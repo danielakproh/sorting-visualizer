@@ -1,5 +1,7 @@
 site_name: Sorting Visualizer
-site_url: https://www.example.com
-nav:
+pages: 
   - Home: index.md
+  - Setup: setup.md
+  - Tests: manage_commands.md
+  - Configuration: config.md
 theme: readthedocs
