@@ -1,0 +1,5 @@
+site_name: Sorting Visualizer
+site_url: https://www.example.com
+nav:
+  - Home: index.md
+theme: readthedocs
