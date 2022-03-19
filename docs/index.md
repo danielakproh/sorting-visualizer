@@ -23,8 +23,6 @@ This visualizer tool is going to be purely developed in the Python programming l
 
 
 * Setup the main display of the application where all the graphics is going to be drawn
-* Draw 2 rectangles on the screen and making sure they center dynamically onto the screen
-* Scale number of rectangles up and implement scrolling control for user to increase and decrease them
 * Implement a simple swap of two elements without color highlighting
 * Implement color highlighting
 * Increase number of rectangles and swap more items using simple conditions
