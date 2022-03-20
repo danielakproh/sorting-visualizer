@@ -1,111 +1,102 @@
-# sorting visualizer: one-file application
+# SORTING visualizer: main file
 import sys
 import pygame
-import random
-pygame.init() # initialize pygame
 
+from src.visualizer import Visualizer
+from src.algorithm import bubble_sort
 
-#------------- config.py: Start-------------#
+def main():
 
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 700
-FPS = 60
+    # init app
+    app = Visualizer()
 
-BACKGROUND_COLOR = pygame.Color("#333333")
+    # Set clock
+    clock = pygame.time.Clock()
 
-RECTANGLE_COLORS = [pygame.Color("#29639e"),
-                    pygame.Color("#ca212c"), 
-                    pygame.Color("#ca372c"), 
-                    pygame.Color("#21ca7d"),
-                    pygame.Color("#b4ca21"),
-                    pygame.Color("#ca21ab"),
-                    pygame.Color("#dfb4d7"),
-                    pygame.Color("#e13a05"),
-                    pygame.Color("#e1d705"),
-                    pygame.Color("#05e1c9")] 
+    # init heights list
+    heights_list = app.generate_rectangle_heights(app.number_of_rectangles)
 
-NUMBER_OF_RECTANGLES = 100
+    # game loop
+    while True:
+        if app.IS_SORTING:
+            try:
+                next(app.sorting_algorithm_generator)
+                app.UPDATE_TIMER = True
+            except StopIteration:
+                app.IS_SORTING = False
+                app.UPDATE_TIMER = False
 
-#------------- config.py: End-------------#
+        app.display.fill(app.BACKGROUND_COLOR)
+        for event in pygame.event.get():
+            # exit app
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
+                    pygame.quit()
+                    sys.exit()
 
+                if event.key == pygame.K_l:
+                    app.DISPLAY_MENU = True
 
-# main window
-window = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-pygame.display.set_caption('sorting vizualizer')
-app_icon = pygame.image.load('logo.png')
-pygame.display.set_icon(app_icon)
+                if event.key == pygame.K_r:
+                    # shuffle
+                    heights_list = app.generate_rectangle_heights(app.number_of_rectangles)
+                    app.update_display()
 
-# Set fps
-clock = pygame.time.Clock() 
+                if event.key == pygame.K_l:
+                    app.DISPLAY_MENU = True
 
-# functions
-def generate_rectangle_heights(number_of_rectangles):
-    """generate list of random values which will be used as heights for the rectangles
+                # algorithm selection
+                if event.key == pygame.K_1:
+                    app.algorithm_name_display = "Bubble Sort"
+                    app.algorithm = bubble_sort
+                    app.DISPLAY_MENU = False
 
-    Args:
-        number_of_rectangles (int): desired number of rectangles to be drawn
+                if event.key == pygame.K_2:
+                    app.algorithm_name_display = "Quick Sort"
+                    app.algorithm = bubble_sort # implement quick sort
+                    app.DISPLAY_MENU = False
 
-    Returns:
-        list: list of random height values
-    """
+                if event.key == pygame.K_3:
+                    app.algorithm_name_display = "Merge Sort"
+                    app.algorithm = bubble_sort # implement quick sort
+                    app.DISPLAY_MENU = False
 
-    heights_list = []
-    for _ in range(number_of_rectangles):
-        height = random.randint(200,600)
-        heights_list.append(height)
-    return heights_list
+            # controls
+                if event.key == pygame.K_b:
+                    app.DISPLAY_MENU = False
 
+                if event.key == pygame.K_SPACE and not app.IS_SORTING and app.algorithm_name_display != None:
+                    app.IS_SORTING = True
+                    app.sorting_algorithm_generator = app.algorithm(heights_list)
+                    app.elapsed_time = 0
+                    app.update_timer = True
 
-def draw_rectangles(window, screen_width, screen_height, number_of_rectangles, heights_list, color_list):
-    """draw rectangles onto the screen
+            if event.type == pygame.MOUSEWHEEL:
+                if event.y == 1 and not app.IS_SORTING:
+                    app.number_of_rectangles += 5
+                    heights_list = app.generate_rectangle_heights(app.number_of_rectangles)
+                    app.update_display()
 
-    Args:
-        window (Pygame Window Object): application's main display surface
-        screen_width (int): display surface width
-        screen_height (int): display surface height
-        number_of_rectangles (int)
-        heights_list (list): 
-        color_list (list):
-    """
-    rect_x = 0
+                elif event.y == -1 and not app.IS_SORTING:
+                    app.number_of_rectangles -= 5
+                    heights_list = app.generate_rectangle_heights(app.number_of_rectangles)
+                    app.update_display()
 
-    for i,height in enumerate(heights_list):
-        rectangle_width = round(screen_width / number_of_rectangles, ndigits=10)
-        rectangle_height = screen_height - height
-        color = color_list[i % len(color_list)]
-        pygame.draw.rect(window, color, (rect_x,height,rectangle_width,rectangle_height))
-        rect_x += rectangle_width
+        app.update_display()
 
-
-# create list upon init
-heights_list = generate_rectangle_heights(NUMBER_OF_RECTANGLES)
-
-# main loop
-while True:
-    window.fill(BACKGROUND_COLOR)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+        if app.DISPLAY_MENU:
+            app.display_algorithm_menu(app.display)
         
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_r:
-                # shuffle
-                heights_list = generate_rectangle_heights(NUMBER_OF_RECTANGLES)
-                draw_rectangles(window, SCREEN_WIDTH, SCREEN_HEIGHT, NUMBER_OF_RECTANGLES, heights_list, RECTANGLE_COLORS)
+        if app.UPDATE_TIMER:
+            app.elapsed_time += round(1 / app.FPS, 3)
 
-        if event.type == pygame.MOUSEWHEEL:
-            if event.y == 1:
-                NUMBER_OF_RECTANGLES += 5
-                heights_list = generate_rectangle_heights(NUMBER_OF_RECTANGLES)
-                draw_rectangles(window, SCREEN_WIDTH, SCREEN_HEIGHT, NUMBER_OF_RECTANGLES, heights_list, RECTANGLE_COLORS)
-            elif event.y == -1:
-                NUMBER_OF_RECTANGLES -= 5
-                heights_list = generate_rectangle_heights(NUMBER_OF_RECTANGLES)
-                draw_rectangles(window, SCREEN_WIDTH, SCREEN_HEIGHT, NUMBER_OF_RECTANGLES, heights_list, RECTANGLE_COLORS)
-    
-    draw_rectangles(window, SCREEN_WIDTH, SCREEN_HEIGHT, NUMBER_OF_RECTANGLES, heights_list, RECTANGLE_COLORS)
+        # set fps frequency
+        clock.tick(Visualizer.FPS)
+        # update screen
+        pygame.display.update()
 
-    # set fps frequency
-    clock.tick(FPS) # to adjust for excecution speed
-    pygame.display.update()
+if __name__ == "__main__":
+    main()
