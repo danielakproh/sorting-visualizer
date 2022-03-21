@@ -1,4 +1,4 @@
-# Visualizer class
+# Visualizer class file
 
 import sys
 import random

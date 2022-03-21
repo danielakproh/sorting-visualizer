@@ -1,4 +1,4 @@
-# SORTING visualizer: main file
+# Sorting Visualizer: main file
 #!/usr/bin/env python3
 
 import sys
@@ -7,11 +7,20 @@ import pygame
 from src.visualizer import Visualizer
 from src.algorithm import bubble_sort
 
+
+# __author__ = Daniel Akproh
+# __copyright__ = Copyright (c) Daniel Akproh, 2022
+# __license__ = GPL
+# __version__ = 0.0.1
+# __maintainer__ = Daniel Akproh
+# __email__ = dakproh@gmail.com
+# __status__ = Dev
+
+
 def main():
 
     # init app
     app = Visualizer()
-
     # Set clock
     clock = pygame.time.Clock()
 
