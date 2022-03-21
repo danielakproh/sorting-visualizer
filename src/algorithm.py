@@ -12,24 +12,24 @@ def swap(heights_list, index01, index02):
     heights_list[index01], heights_list[index02] = heights_list[index02], heights_list[index01]
     return heights_list
 
-def bubble_sort(heights_list):
+def bubble_sort(_list):
     """bubble sort algorithm
 
     Args:
-        heights_list (_type_): _description_
+        _list (list): list to sort
 
     Returns:
-        _type_: _description_
+        list: bubbly sorted list
 
     Yields:
-        _type_: _description_
+        bool: True
     """
-    for i in range(len(heights_list) - 1):
-        for j in range(len(heights_list) - 1 - i):
-            height01 = heights_list[j]
-            height02 = heights_list[j + 1]
+    for i in range(len(_list) - 1):
+        for j in range(len(_list) - 1 - i):
+            height01 = _list[j]
+            height02 = _list[j + 1]
 
             if height01 > height02:
-                heights_list = swap(heights_list, j, j + 1)
+                _list = swap(_list, j, j + 1)
                 yield True
-    return heights_list
+    return _list

@@ -1,4 +1,6 @@
 # SORTING visualizer: main file
+#!/usr/bin/env python3
+
 import sys
 import pygame
 

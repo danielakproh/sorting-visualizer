@@ -52,7 +52,7 @@ class Visualizer:
             display_height (int)
         """
         self.display = pygame.display.set_mode((display_width, display_height))
-        pygame.display.set_caption('sorting vizualizer ~ by Daniel Akproh')
+        pygame.display.set_caption('sorting vizualizer ~ by Daniel A.')
         app_icon = pygame.image.load('logo.png')
         pygame.display.set_icon(app_icon)
     
@@ -60,10 +60,10 @@ class Visualizer:
         """quick & easy way to position text onto main display in a single call
 
         Args:
-            display (Pygame Window Object)
-            font (Pygame Font Object)
+            display (pygame.Surface): application's main display surface
+            font (pygame.Surface): pygame font
             text (str): text to blit
-            color (Pygame Color)
+            color (pygame.Color)
             pos_x (int): text surface's topleft x position, if None is passed, text will be centered
             pos_y (int): text surface's topleft y position
         """
@@ -78,7 +78,7 @@ class Visualizer:
         """display algorithm selection menu
 
         Args:
-            display (Pygame Window Object)
+            display (pygame.Surface): application's main display surface
         """
 
         display.fill(self.BACKGROUND_COLOR)
@@ -88,10 +88,10 @@ class Visualizer:
         self.position_text(self.display, self.ARIAL_30, "B: Back", self.RED, 10, 10)
 
     def display_app_info(self, algorithm_name, runtime):
-        """display useful information for user
+        """display useful information to the user
 
         Args:
-            display (Pygame Window Object)
+            display (pygame.Surface)
             algorithm_name (str): the name of the sorting algorithm
             runtime (int): the total time of execution
         """
@@ -128,7 +128,7 @@ class Visualizer:
         """draw rectangles onto the screen
 
         Args:
-            display (Pygame Window Object): application's main display surface
+            display (pygame.Surface): application's main display surface
             screen_width (int): display surface width
             screen_height (int): display surface height
             number_of_rectangles (int)
