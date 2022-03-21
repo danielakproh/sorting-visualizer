@@ -2,7 +2,7 @@
 
 ## Source Code
 
-See [the Github repository]()
+See [the Github repository](https://github.com/danielakproh/sorting-visualizer)
 
 ## Purpose
 
@@ -10,7 +10,7 @@ This guide is meant to be a mix between formal and explanatory documentation.
 
 ## Synopsis
 
-A Pygame application that helps you understand sorting algorithms in a visual way.
+A simple Python application to visualize the execution of algorithms
 
 ## Introduction
 
@@ -23,11 +23,8 @@ This visualizer tool is going to be purely developed in the Python programming l
 
 
 * Setup the main display of the application where all the graphics is going to be drawn
-* Draw 2 rectangles on the screen and making sure they center dynamically onto the screen
-* Scale number of rectangles up and implement scrolling control for user to increase and decrease them
+* Scale number of rectangles up and implement scrolling control for user to increase and decrease it
 * Implement a simple swap of two elements without color highlighting
-* Implement color highlighting
-* Increase number of rectangles and swap more items using simple conditions
 * Implement a sorting algorithm and test that it works on a regular list
 * Test the algorithm with more inputs
 * Implement the algorithm to the GUI
@@ -38,7 +35,7 @@ This visualizer tool is going to be purely developed in the Python programming l
 
 ## Contributing
 
-See [the Github repository]()
+See [the Github repository](https://github.com/danielakproh/sorting-visualizer)
 
 ## License
 [MIT License]()

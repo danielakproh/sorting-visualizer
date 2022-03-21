@@ -1,7 +1,8 @@
 site_name: Sorting Visualizer
-pages: 
+nav: 
   - Home: index.md
   - Setup: setup.md
-  - Tests: manage_commands.md
-  - Configuration: config.md
+  - Visualizer: 
+              - Class Visualizer: visualizer.md
+              - Module algorithm: algorithm.md
 theme: readthedocs
