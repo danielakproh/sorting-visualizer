@@ -12,7 +12,7 @@
 
   <p align="center">
     <a href="docs/index.md">Documentation</a>
-    .
+    ·
     <a href="https://github.com/danielakproh/sorting-visualizer/issues/new/choose">Report Bug</a>
     ·
     <a href="https://github.com/danielakproh/sorting-visualizer/issues/new/choose">Request Feature</a>
