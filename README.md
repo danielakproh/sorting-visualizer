@@ -11,6 +11,8 @@
   </p>
 
   <p align="center">
+    <a href="docs/index.md">Documentation</a>
+    ·
     <a href="https://github.com/danielakproh/sorting-visualizer/issues/new/choose">Report Bug</a>
     ·
     <a href="https://github.com/danielakproh/sorting-visualizer/issues/new/choose">Request Feature</a>
@@ -46,6 +48,9 @@
 ## About The Project:blue_book:
 
 <!-- gif -->
+<p align="center">
+  <img  src="docs/LiveDemo.gif" alt="Live Demo" />
+</p>
 
 The sorting visualizer is a software tool built to help visualize each step of any sorting algorithm's execution. Its main purpose is to help learn sorting algorithms in a more intuitive & visual way. This project is written using the [Pygame](https:www.pygame.org) library as it provides the necessary set of tools to get up and running with drawing graphics in Python. This project was fun developing and has been an opportunity to learn new skills such as:   
 
