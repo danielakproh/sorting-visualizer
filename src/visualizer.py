@@ -30,6 +30,7 @@ class Visualizer:
     elapsed_time = 0
     number_of_rectangles = 65
 
+    RUNNING = True
     IS_SORTING = False
     UPDATE_TIMER = False
     DISPLAY_MENU = False
@@ -42,6 +43,7 @@ class Visualizer:
     def __init__(self):
         self.display_width = self.SCREEN_WIDTH
         self.display_height = self.SCREEN_HEIGHT
+        self.window_size = (self.display_width, self.display_height)
         self.setup_ui(self.SCREEN_WIDTH, self.SCREEN_HEIGHT)
     
     def setup_ui(self, display_width, display_height):
@@ -55,6 +57,9 @@ class Visualizer:
         pygame.display.set_caption('sorting vizualizer ~ by Daniel A.')
         app_icon = pygame.image.load('logo.png')
         pygame.display.set_icon(app_icon)
+        return True
+    
+    
     
     def position_text(self, display, font, text, color, pos_x, pos_y):
         """quick & easy way to position text onto main display in a single call
@@ -119,9 +124,12 @@ class Visualizer:
             list: list of random height values
         """
         self.heights_list = []
-        for _ in range(number_of_rectangles):
-            height = random.randint(200,600)
-            self.heights_list.append(height)
+        try:
+            for _ in range(number_of_rectangles):
+                height = random.randint(200,600)
+                self.heights_list.append(height)
+        except TypeError:
+            print("number of rectangles should be integer value")
         return self.heights_list
         
     def draw_rectangles(self, display, screen_width, screen_height, number_of_rectangles, heights_list, color_list):
@@ -135,19 +143,26 @@ class Visualizer:
             heights_list (list) 
             color_list (list)
         """
+        if color_list is None:
+            # default
+            color_list = [pygame.Color("#4d6dd1"), # 
+                        pygame.Color("#294ab3"), #
+                        pygame.Color("#3d4d7f")  #
+                        ]
         rect_x = 0
 
-        for i,height in enumerate(heights_list):
-            rectangle_width = round(screen_width / number_of_rectangles, ndigits=10)
-            rectangle_height = screen_height - height
-            color = color_list[i % len(color_list)]
-            pygame.draw.rect(display, color, (rect_x,height,rectangle_width,rectangle_height))
-            rect_x += rectangle_width
+        try:
+            for i,height in enumerate(heights_list):
+                rectangle_width = round(screen_width / number_of_rectangles, ndigits=10)
+                rectangle_height = screen_height - height
+                color = color_list[i % len(color_list)]
+                pygame.draw.rect(display, color, (rect_x,height,rectangle_width,rectangle_height))
+                rect_x += rectangle_width
+        except TypeError:
+            print("Verify that all arguments are of the correct type")
         
     def update_display(self):
         """udpate text data and any change regarding the rectangles such has how many to draw and changes in position
         """
         self.display_app_info(self.algorithm_name_display, runtime=round(self.elapsed_time, 3))
         self.draw_rectangles(self.display, self.display_width, self.display_height, self.number_of_rectangles, self.heights_list, self.RECTANGLE_COLORS)
-
-

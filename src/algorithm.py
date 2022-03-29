@@ -24,12 +24,18 @@ def bubble_sort(_list):
     Yields:
         bool: True
     """
-    for i in range(len(_list) - 1):
-        for j in range(len(_list) - 1 - i):
-            height01 = _list[j]
-            height02 = _list[j + 1]
+    if len(_list) != 0:
+        try:
+            for i in range(len(_list) - 1):
+                for j in range(len(_list) - 1 - i):
+                    height01 = _list[j]
+                    height02 = _list[j + 1]
 
-            if height01 > height02:
-                _list = swap(_list, j, j + 1)
-                yield True
+                    if height01 > height02:
+                        _list = swap(_list, j, j + 1)
+                        yield True
+        except TypeError:
+            print("verify that your inputs are of the correct types")
+    if len(_list) == 0:
+        raise Exception("Can't sort empty list")
     return _list
