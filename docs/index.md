@@ -1,4 +1,4 @@
-# Welcome to Sorting Visualizer documentation
+# Welcome to Sorting Visualizer documentation `Version 1.0.0`
 
 ## Source Code
 
