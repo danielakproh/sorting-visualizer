@@ -76,7 +76,7 @@ Please follow the below instructions if you wish to fork a copy of this project
 Run the following command in your Git Bash terminal to clone the project:
 
 ```sh
-$ cd <path-to-folder>
+$ cd path/to/folder
 $ git clone https://github.com/danielakproh/sorting-visualizer.git .
 ```
 
@@ -92,7 +92,7 @@ $ pip install -r requirements/requirements.txt
 You can now run the app and even be creative and add your own features! Run the following command to run the app
 
 ```sh
-$ cd <path-to-folder>
+$ cd path/to/folder
 $ python main.py
 ```
 

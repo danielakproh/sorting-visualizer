@@ -45,7 +45,7 @@ If you encounter any error when following this guide, I have linked some helpful
 Run the following command in your Git Bash terminal to clone the project
 
 ```
-$ cd <path-to-folder>
+$ cd path/to/folder
 $ git clone https://github.com/danielakproh/sorting-visualizer.git .
 ```
 
@@ -61,7 +61,7 @@ $ pip install -r requirements/requirements.txt
 You can now run the app and even be creative and add your own features! Run the following command to run the app
 
 ```
-$ cd <path-to-folder>
+$ cd path/to/folder
 $ python main.py
 ```
 
